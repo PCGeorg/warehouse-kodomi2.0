@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  uid      Int    @id @default(autoincrement())
+  role     Int    @default(3)
+  uname    String @unique
+  password String
+}
+
+//Database untuk data master produk
+model Product {
+  productId       Int               @id @default(autoincrement())
+  productName     String
+  productPrice    String            @unique
+  productStock    BigInt
+  create_date     DateTime          @default(now())
+  create_by       String
+  update_date     DateTime          @default(now())
+  update_by       String
+  ProductCustomer ProductCustomer[]
+  Order           Order[]
+}
+
+//Database untuk harga jual tiap customer
+model ProductCustomer {
+  prodCustId    Int       @id @default(autoincrement())
+  productPrice  String    @unique
+  Product       Product?  @relation(fields: [custProductId], references: [productId])
+  custProductId Int?
+  Customer      Customer? @relation(fields: [custId], references: [custId])
+  custId        Int?
+  create_date   DateTime  @default(now())
+  create_by     String
+  update_date   DateTime  @default(now())
+  update_by     String
+}
+
+//Database untuk data customer
+model Customer {
+  custId          Int               @id @default(autoincrement())
+  custName        String
+  create_date     DateTime          @default(now())
+  create_by       String
+  update_date     DateTime          @default(now())
+  update_by       String
+  ProductCustomer ProductCustomer[]
+}
+
+//Database untuk mencatat pengeluaran
+model Expenses {
+  expenseId     Int      @id @default(autoincrement())
+  detailExpense String?  @db.Text
+  priceExpense  String
+  dateExpense   DateTime @default(now())
+  create_date   DateTime @default(now())
+  create_by     String
+  update_date   DateTime @default(now())
+  update_by     String
+}
+
+//Database untuk mencatat pembellian barang masuk
+model Order {
+  orderId          Int      @id @default(autoincrement())
+  Product          Product? @relation(fields: [productId], references: [productId])
+  productId        Int?
+  orderDate        String
+  orderQty         String
+  orderNumber      String   @db.Text
+  orderPrice       String
+  orderStatus      Int      @default(1)
+  orderPaymentType Int
+  create_date      DateTime @default(now())
+  create_by        String
+  update_date      DateTime @default(now())
+  update_by        String
+}
+
+//Database untuk mencatat pembellian
+model Transaction {
+  tansactionId  Int      @id @default(autoincrement())
+  detailExpense String?  @db.Text
+  priceExpense  String
+  dateExpense   DateTime @default(now())
+  create_date   DateTime @default(now())
+  create_by     String
+  update_date   DateTime @default(now())
+  update_by     String
+}
