@@ -36,16 +36,16 @@ model Product {
 
 //Database untuk harga jual tiap customer
 model ProductCustomer {
-  prodCustId    Int       @id @default(autoincrement())
-  productPrice  String    @unique
-  Product       Product?  @relation(fields: [custProductId], references: [productId])
-  custProductId Int?
-  Customer      Customer? @relation(fields: [custId], references: [custId])
-  custId        Int?
-  create_date   DateTime  @default(now())
-  create_by     String
-  update_date   DateTime  @default(now())
-  update_by     String
+  prodCustId       Int       @id @default(autoincrement())
+  productSellPrice String    @unique
+  Product          Product?  @relation(fields: [custProductId], references: [productId])
+  custProductId    Int?
+  Customer         Customer? @relation(fields: [custId], references: [custId])
+  custId           Int?
+  create_date      DateTime  @default(now())
+  create_by        String
+  update_date      DateTime  @default(now())
+  update_by        String
 }
 
 //Database untuk data customer

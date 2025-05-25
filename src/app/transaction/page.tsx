@@ -1,26 +1,23 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { InvoiceTable } from "@/components/Tables/invoice/invoice-table";
-import { TopProducts } from "@/components/Tables/top-products";
-import { TopProductsSkeleton } from "@/components/Tables/top-products/skeleton";
+import { InvoiceTableSkeleton } from "@/components/Tables/invoice/skeleton";
 
 import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Tables",
+  title: "Transaction",
 };
 
 const TablesPage = () => {
   return (
     <>
-      <Breadcrumb pageName="Tables" />
+      <Breadcrumb pageName="Transaction" />
 
       <div className="space-y-10">
-        <Suspense fallback={<TopProductsSkeleton />}>
-          <TopProducts />
+        <Suspense fallback={<InvoiceTableSkeleton />}>
+          <InvoiceTable />
         </Suspense>
-
-        <InvoiceTable />
       </div>
     </>
   );
