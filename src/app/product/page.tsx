@@ -1,6 +1,6 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import { Customers } from "@/components/Tables/customers";
-import { customersSkeleton } from "@/components/Tables/customers/skeleton";
+import { Products } from "@/components/Tables/products";
+import { ProductsSkeleton } from "@/components/Tables/products/skeleton";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -14,8 +14,8 @@ const TablesPage = () => {
       <Breadcrumb pageName="Customer" />
 
       <div className="space-y-10">
-        <Suspense fallback={<customersSkeleton />}>
-          <Customers />
+        <Suspense fallback={<ProductsSkeleton />}>
+          <Products />
         </Suspense>
       </div>
     </>

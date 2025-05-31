@@ -37,29 +37,29 @@ export async function POST(req: NextRequest) {
     const authHeader = req.headers.get("authorization");
     const tokenString = authHeader?.split(" ")[1]; // Get token after "Bearer "
 
-    console.log("Extracted Token:", tokenString); // Debugging
+    // console.log("Extracted Token:", tokenString); // Debugging
 
-    if (!tokenString) {
-      return NextResponse.json({ error: "No token provided" }, { status: 401 });
-    }
+    // if (!tokenString) {
+    //   return NextResponse.json({ error: "No token provided" }, { status: 401 });
+    // }
 
-    // ✅ Manually decode the token using `jsonwebtoken`
-    let decodedToken;
-    try {
-      decodedToken = jwt.verify(tokenString, process.env.NEXTAUTH_SECRET!) as {
-        id: string;
-        name: string;
-        role: string;
-      };
-      console.log("Decoded Token:", decodedToken); // Debugging
-    } catch (error) {
-      console.error("JWT Verification Error:", error);
-      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
-    }
+    // // ✅ Manually decode the token using `jsonwebtoken`
+    // let decodedToken;
+    // try {
+    //   decodedToken = jwt.verify(tokenString, process.env.NEXTAUTH_SECRET!) as {
+    //     id: string;
+    //     name: string;
+    //     role: string;
+    //   };
+    //   console.log("Decoded Token:", decodedToken); // Debugging
+    // } catch (error) {
+    //   console.error("JWT Verification Error:", error);
+    //   return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    // }
 
-    if (!decodedToken) {
-      return NextResponse.json({ error: "Unauthorized API" }, { status: 401 });
-    }
+    // if (!decodedToken) {
+    //   return NextResponse.json({ error: "Unauthorized API" }, { status: 401 });
+    // }
 
     const formData = await req.formData();
 
@@ -80,26 +80,26 @@ export async function PUT(req: NextRequest) {
     const authHeader = req.headers.get("authorization");
     const tokenString = authHeader?.split(" ")[1]; // Get token after "Bearer "
 
-    if (!tokenString) {
-      return NextResponse.json({ error: "No token provided" }, { status: 401 });
-    }
+    // if (!tokenString) {
+    //   return NextResponse.json({ error: "No token provided" }, { status: 401 });
+    // }
 
-    let decodedToken;
-    try {
-      decodedToken = jwt.verify(tokenString, process.env.NEXTAUTH_SECRET!) as {
-        id: string;
-        name: string;
-        role: string;
-      };
-      console.log("Decoded Token:", decodedToken); // Debugging
-    } catch (error) {
-      console.error("JWT Verification Error:", error);
-      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
-    }
+    // let decodedToken;
+    // try {
+    //   decodedToken = jwt.verify(tokenString, process.env.NEXTAUTH_SECRET!) as {
+    //     id: string;
+    //     name: string;
+    //     role: string;
+    //   };
+    //   console.log("Decoded Token:", decodedToken); // Debugging
+    // } catch (error) {
+    //   console.error("JWT Verification Error:", error);
+    //   return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    // }
 
-    if (!decodedToken) {
-      return NextResponse.json({ error: "Unauthorized API" }, { status: 401 });
-    }
+    // if (!decodedToken) {
+    //   return NextResponse.json({ error: "Unauthorized API" }, { status: 401 });
+    // }
 
     const formData = await req.formData();
     const custId = formData.get("id");
