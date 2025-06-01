@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export async function customersSkeleton() {
+export async function CustomersSkeleton() {
   //   const data = await getCustomers();
   return (
     <div className="rounded-[10px] bg-white shadow-1 dark:bg-gray-dark dark:shadow-card">
