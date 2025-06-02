@@ -24,9 +24,17 @@ export const NAV_DATA = [
       },
       {
         title: "Customer",
-        url: "/customer",
         icon: Icons.User,
-        items: [],
+        items: [
+          {
+            title: "List Customer",
+            url: "/customer",
+          },
+          {
+            title: "Daftar Harga",
+            url: "/customerprice",
+          },
+        ],
       },
       {
         title: "Produk",
