@@ -24,7 +24,7 @@ model User {
 model Product {
   productId       Int               @id @default(autoincrement())
   productName     String
-  productPrice    String            @unique
+  productPrice    String
   productStock    BigInt
   create_date     DateTime          @default(now())
   create_by       String

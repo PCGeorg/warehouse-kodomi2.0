@@ -8,9 +8,10 @@ import {
 } from "@/components/ui/table";
 
 interface ProductPrice {
-  prodCustId: number;
+  prodCustId: number; //primary-key
   productSellPrice: string;
   custProductId: number;
+  productName: String;
   custId: number;
 }
 
@@ -18,7 +19,7 @@ interface Props {
   productPrices: ProductPrice[];
 }
 
-export async function ProductPriceTable({ productPrices }: Props) {
+export function ProductPriceTable({ productPrices }: Props) {
   if (productPrices.length === 0) {
     return (
       <p className="text-gray-500">
@@ -42,7 +43,7 @@ export async function ProductPriceTable({ productPrices }: Props) {
           <TableRow key={price.prodCustId}>
             <TableCell>{price.prodCustId}</TableCell>
             <TableCell>{price.productSellPrice}</TableCell>
-            <TableCell>{price.custProductId}</TableCell>
+            <TableCell>{price.productName}</TableCell>
             <TableCell>
               <button className="rounded border px-2 py-1 text-sm">Edit</button>
             </TableCell>

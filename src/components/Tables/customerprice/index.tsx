@@ -12,9 +12,10 @@ interface Customer {
 }
 
 interface ProductPrice {
-  prodCustId: number;
+  prodCustId: number; // Primary-key
   productSellPrice: string;
   custProductId: number;
+  productName: String;
   custId: number;
   create_date: string;
   update_date: string;
@@ -86,6 +87,7 @@ export default function CustomerProductPricesPageClient() {
               }))}
               defaultValue=""
               className="w-full"
+              onChange={(val) => setSelectedCustomerId(Number(val))}
             />
           </div>
           <button
@@ -113,10 +115,10 @@ export default function CustomerProductPricesPageClient() {
           <p className="text-gray-500">
             Please select a customer to view prices.
           </p>
+        ) : productPrices.length === 0 ? (
+          <CustomersProductPricesSkeleton />
         ) : (
-          <Suspense fallback={<CustomersProductPricesSkeleton />}>
-            <ProductPriceTable productPrices={productPrices} />
-          </Suspense>
+          <ProductPriceTable productPrices={productPrices} />
         )}
       </div>
     </div>
